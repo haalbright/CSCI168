@@ -10,9 +10,11 @@
 class Object {
   public:
     // Constructors and Destructors
-    Object() = default;
+    //std::vector<Object*> mObjects;
+    //Object():mObjects(nullptr){}
+    Object()=default;
     virtual ~Object() = default;
-
+    virtual void printFunc(){}
     ////////////////////////////////////////////////////////////////////////////
     /// @brief Determine a collision between a ray and the object
     /// @param _ray Ray
