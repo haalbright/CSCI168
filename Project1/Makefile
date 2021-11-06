@@ -1,8 +1,8 @@
 ################################################################################
 ## OS
 ################################################################################
-OS = LINUX
-#OS = OSX
+#OS = LINUX
+OS = OSX
 
 ################################################################################
 ## GCC
@@ -40,6 +40,8 @@ LIBS = $(GL_LIBS)
 OBJS = \
        RayTracer.o \
        Sphere.o \
+			 Plane.o \
+			 Scene.o \
        main.o
 
 DEPS = ${OBJS:%.o=%.d}
@@ -55,6 +57,6 @@ clean:
 	rm -f $(EXECUTABLE) $(OBJS) $(DEPS)
 
 .cpp.o:
-	$(CC) $(OPTS) $(DEFS) -MMD $(INCL) -c $< -o $@
+	$(CC) $(OPTS) $(DEFS) -MMD $(INCL) -c  $< -o $@
 
 -include $(DEPS)
