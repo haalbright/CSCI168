@@ -42,6 +42,7 @@ OBJS = \
        Sphere.o \
 			 Plane.o \
 			 Scene.o \
+			 Light.o \
        main.o
 
 DEPS = ${OBJS:%.o=%.d}

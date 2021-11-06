@@ -17,12 +17,15 @@
 class Scene {
   public:
     Scene(){};
+    ~Scene();
     //Scene(const Camera aCam, std::vector<Object*> objectV, const std::vector<Light*> lightsV)
     void readFromFile(const std::string& filename);
     Collision firstIntersection(const Ray& _ray);
     glm::vec3 parseVec3(const std::string& vecLine);
-  //private:
-    //Camera mCam; //do I want camera here?
+    void printFunc();
+    std::vector<Object*> getObjects(){return mObjects;}
+    std::vector<Light*> getLights(){return mLights;}
+  private:
     std::vector<Object*> mObjects;
     std::vector<Light*> mLights;
 };

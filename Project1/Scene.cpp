@@ -14,30 +14,12 @@
 #include "Scene.h"
 #include "Plane.h"
 
-// class Scene {
-//   public:
-//     Scene(const Camera aCam, std::vector<Object*> objectV, const std::vector<Light*> lightsV)
-//     void readFromFile(const std::string& filename);
-//     Collision firstIntersection(const Ray& _ray);
-//     glm::vec3 parsevec3(const std::string& vecLine);
-//   private:
-//     Camera mCam; //do I want camera here?
-//     std::vector<Object*> mObjects;
-//     std::vector<Light*> mLights;
-// };
-
-  //glm::vec3  m_center;
   float sTof(const std::string& str){
       std::stringstream convert1(str);
       float f;
       convert1>>f;
       return f;
   }
-
-
-  // glm::vec3 Scene::tovec3(const std::vector<std::string>& vecLine){ //input should be a number, space, a number, space, a number to get the correct output
-  //     return glm::vec3(sTof(vecLine[0]),sTof(vecLine[1]),sTof(vecLine[2]));
-  // }
 
   std::vector<std::string> token(std::string str){
     std::vector<std::string> splitStr;
@@ -52,7 +34,6 @@
   }
 
   Material readMaterial(std::ifstream* inFile){
-    std::cout<<"Getting material"<<std::endl;
     std::string line;
     Material aMaterial;
     while(getline(*inFile,line)){
@@ -96,7 +77,6 @@ void Scene::readFromFile(const std::string& filename){
   std::ifstream inFile;
   inFile.open(filename);
   if (inFile.is_open()){
-    std::cout<<"Opened"<<std::endl;
     while(getline(inFile,line)){
       if(line=="Sphere"){
         glm::vec3 vCenter;
@@ -108,12 +88,10 @@ void Scene::readFromFile(const std::string& filename){
           }
           std::vector<std::string> parsed=token(line);
           if(parsed[0]=="Center"){
-            std::cout<<"Center: "<<std::endl;
             vCenter=glm::vec3(sTof(parsed[1]),sTof(parsed[2]),sTof(parsed[3]));
           }
           else if (parsed[0]=="Radius"){
             vRadius=sTof(parsed[1]);
-            std::cout<<"Radius: "<<vRadius<<std::endl;
           }
           else if(parsed[0]=="M"){
             m=readMaterial(&inFile);
@@ -145,7 +123,6 @@ void Scene::readFromFile(const std::string& filename){
       }
 
       else if(line=="Light"){
-        std::cout<<"Light"<<std::endl;
         glm::vec4 vA, vD, vS;
         glm::vec3 vPosition;
         int type;
@@ -183,5 +160,14 @@ void Scene::readFromFile(const std::string& filename){
   }
   else{
     std::cout<<"File can't be opened"<<std::endl;
+  }
+}
+
+void Scene::printFunc(){
+  for(int i=0;i<mObjects.size();i++){
+    mObjects[i]->printFunc();
+  }
+  for(int k=0;k<mLights.size();k++){
+    mLights[k]->printFunc();
   }
 }

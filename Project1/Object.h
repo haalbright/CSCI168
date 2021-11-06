@@ -1,6 +1,6 @@
 #ifndef _OBJECT_H_
 #define _OBJECT_H_
-
+#include <iostream>
 #include "Collision.h"
 #include "Ray.h"
 
@@ -14,7 +14,7 @@ class Object {
     //Object():mObjects(nullptr){}
     Object()=default;
     virtual ~Object() = default;
-    virtual void printFunc(){}
+    virtual void printFunc(){std::cout<<"Object Print Function"<<std::endl;}
     ////////////////////////////////////////////////////////////////////////////
     /// @brief Determine a collision between a ray and the object
     /// @param _ray Ray

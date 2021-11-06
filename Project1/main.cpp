@@ -11,8 +11,16 @@
 #include <chrono>
 #include <iostream>
 #include <memory>
+#include <vector>
+#include <string>
 #include <thread>
+#include <fstream>
+#include <typeinfo>
 
+#include <sstream>
+#include "Scene.h"
+#include "Sphere.h"
+#include "Object.h"
 // Engine
 #include "GLInclude.h"
 
@@ -161,10 +169,17 @@ void errorCallback(int _code, const char* _msg) {
 /// @return Application success status
 int
 main(int _argc, char** _argv) {
+  std::string filename="example.txt";
+  Scene example;
+
+  example.readFromFile(filename);
+  example.printFunc();//print all objects and lights in scene
   //////////////////////////////////////////////////////////////////////////////
   // Initialize
+
   std::cout << "Initializing GLFWWindow" << std::endl;
   // GLFW
+
   glfwSetErrorCallback(errorCallback);
   if(!glfwInit()) {
     std::cerr << "GLFW Cannot initialize" << std::endl;
@@ -193,7 +208,7 @@ main(int _argc, char** _argv) {
   // Program initialize
   std::cout << "Initializing application" << std::endl;
   initialize(window);
-
+    return 0;
   //////////////////////////////////////////////////////////////////////////////
   // Main loop
   run(window);

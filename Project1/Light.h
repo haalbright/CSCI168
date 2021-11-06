@@ -13,11 +13,13 @@ class Light{
 public:
   Light()=default;
   Light(glm::vec4 viA, glm::vec4 viD, glm::vec4 viS, int lType, glm::vec3 lPosition): iD{viD}, iS{viS}, iA{viA}, position{lPosition}, type(lType){}
-  //Light():mLights(nullptr){};
   virtual ~Light() = default;
-  //std::vector<Light*> mLights;
-  //glm::vec4 getA(): {}
-  void printFunc(){}
+  glm::vec4 getA(){return iA;}
+  glm::vec4 getD(){return iD;}
+  glm::vec4 getS(){return iS;}
+  glm::vec3 getPos(){return position;}
+  int getType(){return type;}
+  void printFunc();
 private:
   glm::vec4 iD;
   glm::vec4 iS;

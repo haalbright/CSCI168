@@ -5,7 +5,7 @@
 /// @brief Material
 ////////////////////////////////////////////////////////////////////////////////
 struct Material {
-  bool hasTexture;
+  bool hasTexture=false;//since we aren't using textures now
   glm::vec4 kD;
   glm::vec4 kS;
   glm::vec4 kA;
