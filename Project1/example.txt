@@ -1,0 +1,22 @@
+Plane
+P 0 0 0
+N 0 1 0
+~Plane
+Sphere
+Center 0 3 0
+Radius 3
+M
+hasTexture false
+kD 0.2 0.2 0.2 0.3
+kA 0.2 0.2 0.2 0.3
+kS 0.2 0.2 0.2 0.1
+pS 0.1
+~M
+~Sphere
+Light
+Type 1
+Position 0 10 0
+iA 0.2 0.2 0.2 0.3
+iD 0.7 0.7 0.7 0.3
+iS 1.0 1,0 1.0 0.1
+~Light

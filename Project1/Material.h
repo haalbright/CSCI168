@@ -5,6 +5,11 @@
 /// @brief Material
 ////////////////////////////////////////////////////////////////////////////////
 struct Material {
+  bool hasTexture;
+  glm::vec4 kD;
+  glm::vec4 kS;
+  glm::vec4 kA;
+  float rho;
 };
 
 #endif
