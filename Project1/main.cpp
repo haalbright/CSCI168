@@ -21,6 +21,7 @@
 #include "Scene.h"
 #include "Sphere.h"
 #include "Object.h"
+#include "Plane.h"
 // Engine
 #include "GLInclude.h"
 
@@ -176,6 +177,39 @@ main(int _argc, char** _argv) {
   example.printFunc();//print all objects and lights in scene
   //////////////////////////////////////////////////////////////////////////////
   // Initialize
+  {
+    glm::vec3 origin(50,50,0);
+    glm::vec3 direction(5,5,5);
+    glm::vec3 pPoint(50,50,50);
+    glm::vec3 p1Normal(1,2,-3);
+    glm::vec3 p2Normal(1,2,3);
+    glm::vec3 p3Normal(3,2,-1);
+    Ray ex(origin,direction);
+    glm::vec4 kD(0.2, 0.2, 0.2, 0.3);
+    glm::vec4 kA(0.2, 0.2, 0.2, 0.3);
+    glm::vec4 kS(0.2, 0.2, 0.2, 0.3);
+    float p=.1;
+    Material m;
+    m.kD=kD;
+    m.kS=kS;
+    m.kA=kA;
+    m.rho=p;
+    glm::vec3 s1C(50,50,10);
+    Sphere s1(s1C,5,m);
+    Sphere s2(s1C,9,m);
+    Sphere s3(s1C,13,m);
+    s1.collide(ex);
+    s2.collide(ex);
+    s3.collide(ex);
+    Plane p1(pPoint,p1Normal,m);
+    Plane p2(pPoint,p2Normal,m);
+    Plane p3(pPoint,p3Normal,m);
+    p1.collide(ex);
+    p2.collide(ex);
+    p3.collide(ex);
+
+
+  }
 
   std::cout << "Initializing GLFWWindow" << std::endl;
   // GLFW

@@ -104,6 +104,7 @@ void Scene::readFromFile(const std::string& filename){
       }
       else if(line=="Plane"){
         glm::vec3 vPosition,vNormal;
+        Material m;
         while(getline(inFile,line)){
           if(line=="~Plane"){
             break;
@@ -115,11 +116,14 @@ void Scene::readFromFile(const std::string& filename){
           else if (parsed[0]=="N"){
             vNormal=glm::vec3(sTof(parsed[1]),sTof(parsed[2]),sTof(parsed[3]));
           }
+          else if(parsed[0]=="M"){
+            m=readMaterial(&inFile);
+          }
           else{
             std::cout<<"ERROR: Unknown Plane attribute: "<<line<<std::endl;
           }
         }
-        mObjects.push_back(new Plane(vPosition, vNormal));
+        mObjects.push_back(new Plane(vPosition, vNormal, m));
       }
 
       else if(line=="Light"){

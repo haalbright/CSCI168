@@ -17,7 +17,7 @@
 class Scene {
   public:
     Scene(){};
-    ~Scene();
+    //~Scene();
     //Scene(const Camera aCam, std::vector<Object*> objectV, const std::vector<Light*> lightsV)
     void readFromFile(const std::string& filename);
     Collision firstIntersection(const Ray& _ray);

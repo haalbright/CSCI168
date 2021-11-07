@@ -1,6 +1,13 @@
 Plane
 P 0 0 0
 N 0 1 0
+M
+hasTexture false
+kD 0.2 0.2 0.2 0.3
+kA 0.2 0.2 0.2 0.3
+kS 0.2 0.2 0.2 0.1
+pS 0.1
+~M
 ~Plane
 Sphere
 Center 0 3 0

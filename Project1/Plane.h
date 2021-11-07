@@ -20,13 +20,15 @@
 // };
 class Plane : public Object {
   public:
-    Plane(const glm::vec3& p, const glm::vec3& n): position{p}, normal{n} {}
+    Plane(const glm::vec3& p, const glm::vec3& n, const Material& aMaterial): position{p}, normal{n}, m{aMaterial}{}
     Collision collide(const Ray& _ray) const override;
     void printFunc()override;
     glm::vec3 getPos(){return position;}
     glm::vec3 getNorm(){return normal;}
+    Material getMaterial(){return m;}
   private:
     glm::vec3 position, normal;
+    Material m;
 };
 
 #endif

@@ -2,12 +2,36 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <cmath>
 #include <sstream>
 #include "Sphere.h"
 #include "GLInclude.h"
 #include "Object.h"
 Collision Sphere::collide(const Ray& _ray) const {
-  return Collision();
+  glm::vec3 posRS=_ray.m_origin-m_center;
+  float A=dot(_ray.m_direction, _ray.m_direction);
+  float B=dot(posRS,2*_ray.m_direction);
+  float C=dot(posRS,posRS)-(m_radius*m_radius);
+  float discriminant=B*B-(4*A*C);
+  if (discriminant<0){
+    std::cout<<"Discriminant is negative"<<std::endl;
+    std::cout<<"Sphere with radius: "<<m_radius<<" has no collision"<<std::endl;
+      return Collision();
+  }
+  float numerator=B*-1 - sqrt(discriminant);
+  if (numerator<0){
+    numerator=B*-1 + sqrt(discriminant);
+  }
+  if(numerator<0){
+    std::cout<<"Sphere with radius: "<<m_radius<<" has no collision"<<std::endl;
+    return Collision();
+  }
+  float t=numerator/(2*A);
+  glm::vec3 cPosition=_ray.m_origin + _ray.m_direction*t;
+  glm::vec3 cNormal=(cPosition-m_center)/m_radius;
+  std::cout<<"Sphere with radius: "<<m_radius<<" has collision at: "<<cPosition[0]<<", "<< cPosition[1]<<", "<< cPosition[2]<<std::endl;
+
+  return Collision(cPosition, cNormal, &m_material);
 }
 
 void Sphere::printFunc(){
