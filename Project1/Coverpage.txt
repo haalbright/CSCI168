@@ -1,0 +1,29 @@
+Members: Hanna Albright, Illya Garashchenko, Katherine Kuenster
+
+Missing Features:
+• Ray generation in perspective view. 
+• Collision of rays with a single infinite ground plane and a set of spheres. 
+• Ambient, diffuse, and specular lighting from multiple point lights. 
+• Shadow determination in the lighting computations. 
+
+
+
+
+
+A list of team member names 
+• A list of all known bugs and missing features 
+• A list of all minimal extra features stating who the main contributors were for each (without this list, I will 
+not award any credit). It is appropriate to list one OR more members for each feature.  
+Example: Reading a scene from an external file: Jory and Pippin 
+• A  list  of  collaborators  and  outside  resources.  This includes  collaboration  through  online  forums,  e.g., if 
+you asked a question on stackoverflow. Be sure to cite sources again in the assignment body, e.g., copy 
+website link into code. Do not list Dr. Jory as a collaborator -- this is assumed. 
+  
+• Acknowledgement by each team member of the following: 
+ 
+I certify that I have listed above all the sources that I consulted regarding this assignment, and that I have 
+not received or given any assistance that is contrary to the letter or the spirit of the collaboration guidelines 
+for this assignment. 
+ 
+Signature (Type full name): 
+Date: 
