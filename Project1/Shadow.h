@@ -4,15 +4,18 @@
 #include "GLInclude.h"
 #include "Object.h"
 #include "Light.h"
-
+#include "Collision.h"
+#include "Ray.h"
 
 
 class Shadow {
- public:
-  Shadow(){};
- private:
+  private:
+ Ray();
+ Collision();
  // std::vector<Object*>mObjects;
-}
+  public:
+   Shadow(){};
+
 
 
 #endif
