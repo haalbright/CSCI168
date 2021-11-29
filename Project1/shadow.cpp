@@ -9,6 +9,10 @@
 #include "GLInclude.h"
 
 
-void Shadow::clear() const {
     
-}
+ // generate ray
+ // if ray collides is true 
+ //produce shadow ambient 
+ //else 
+ //prduce ADS lighting 
+
