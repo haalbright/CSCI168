@@ -6,7 +6,7 @@ void RayTracer::clear() const {}
 //screen hight and width:
 int height = g_height;
 int width = g_width;
-int numObjects = 1;
+int numObjects = mObjects.size;
 
 void RayTracer::render(const Scene& _scene) const 
 {
