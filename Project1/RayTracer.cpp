@@ -40,5 +40,5 @@ void RayTracer::render(const Scene& _scene) const
 			}
 		}
   }
-  glDrawPixels(g_width, g_height, GL_RGBA, GL_FLOAT, g_frame.get());
+  glDrawPixels(width, height, GL_RGBA, GL_FLOAT, g_frame.get());
 }
