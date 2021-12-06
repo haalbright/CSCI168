@@ -8,7 +8,7 @@
 #include "Light.h"
 #include "Object.h"
 
-void Light::printFunc(){
+void Light::printFunc()const{
   std::cout<<"--Light Object--"<<std::endl;
   std::cout<<"Position:("<<position[0]<<", "<<position[1]<<", "<<position[2]<<")"<<std::endl;
   std::cout<<"iD: {"<<iD[0]<<", "<<iD[1]<<", "<<iD[2]<<", "<<iD[3]<<"}"<<std::endl;

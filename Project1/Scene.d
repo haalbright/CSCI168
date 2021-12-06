@@ -533,5 +533,5 @@ Scene.o: Scene.cpp Collision.h GLInclude.h \
   /usr/local/include/glm/./gtx/../vec4.hpp \
   /usr/local/include/glm/./gtx/../mat2x2.hpp \
   /usr/local/include/glm/./gtx/range.hpp \
-  /usr/local/include/glm/./gtx/../gtc/type_ptr.hpp Material.h Ray.h \
-  Light.h Object.h Camera.h Sphere.h Scene.h Plane.h
+  /usr/local/include/glm/./gtx/../gtc/type_ptr.hpp Material.h Object.h \
+  Ray.h Scene.h Light.h Camera.h Sphere.h Plane.h

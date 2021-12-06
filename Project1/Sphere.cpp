@@ -13,24 +13,24 @@ Collision Sphere::collide(const Ray& _ray) const {
   float B=dot(posRS,2*_ray.m_direction);
   float C=dot(posRS,posRS)-(m_radius*m_radius);
   float discriminant=B*B-(4*A*C);
-  if (discriminant<0){
-    std::cout<<"Discriminant is negative"<<std::endl;
-    std::cout<<"Sphere with radius: "<<m_radius<<" has no collision"<<std::endl;
+  if (discriminant<0){//discriminant is negative, no collision
       return Collision();
   }
   float numerator=B*-1 - sqrt(discriminant);
+  bool isInsideSphere=false;
   if (numerator<0){
     numerator=B*-1 + sqrt(discriminant);
+    isInsideSphere=true;
   }
-  if(numerator<0){
-    std::cout<<"Sphere with radius: "<<m_radius<<" has no collision"<<std::endl;
+  if(numerator<0){//no collision
     return Collision();
   }
   float t=numerator/(2*A);
   glm::vec3 cPosition=_ray.m_origin + _ray.m_direction*t;
   glm::vec3 cNormal=(cPosition-m_center)/m_radius;
-  std::cout<<"Sphere with radius: "<<m_radius<<" has collision at: "<<cPosition[0]<<", "<< cPosition[1]<<", "<< cPosition[2]<<std::endl;
-
+  if(isInsideSphere){
+    cNormal=-1.0*cNormal;
+  }
   return Collision(cPosition, cNormal, &m_material);
 }
 

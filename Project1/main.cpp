@@ -22,6 +22,9 @@
 #include "Sphere.h"
 #include "Object.h"
 #include "Plane.h"
+#include "Camera.h"
+#include "Renderer.h"
+#include "RayTracer.h"
 // Engine
 #include "GLInclude.h"
 
@@ -29,9 +32,11 @@
 // Global variables - avoid these
 
 // Window
-int g_width{1360};
-int g_height{768};
 
+RayTracer g_rTracer;
+int g_width=1360;
+int g_height=768;
+Scene g_scene;
 // Framebuffer
 std::unique_ptr<glm::vec4[]> g_frame{nullptr}; ///< Framebuffer
 
@@ -50,7 +55,7 @@ float g_framesPerSecond{0.f};
 /// @brief Initialize GL settings
 void
 initialize(GLFWwindow* _window) {
-  glClearColor(0.f, 0.f, 0.f, 1.f);
+  glClearColor(1.f, 1.f, 1.f, 1.f);
 
   g_frame = std::make_unique<glm::vec4[]>(g_width*g_height);
 }
@@ -62,7 +67,7 @@ initialize(GLFWwindow* _window) {
 void resize(GLFWwindow* window, int _w, int _h) {
   g_width = _w;
   g_height = _h;
-
+  g_rTracer.resize(g_width,g_height);
   // Viewport
   glfwGetFramebufferSize(window, &g_width, &g_height);
   glViewport(0, 0, g_width, g_height);
@@ -74,20 +79,36 @@ void
 draw(GLFWwindow* _window, double _currentTime) {
   //////////////////////////////////////////////////////////////////////////////
   // Clear
+  glClearColor(1.0, 0.0, 0.0, 1.0);
   glClear(GL_COLOR_BUFFER_BIT);
-
+  g_rTracer.resize(g_width,g_height);
+  g_rTracer.render(g_scene);
+  std::unique_ptr<glm::vec4[]>& new_frame=g_rTracer.getFrame();
+  std::cout<<new_frame.get()[5].x<<std::endl;
   for(int i = 0; i < g_width*g_height; ++i)
     g_frame[i] = glm::vec4(0.f, 0.4f, 0.f, 0.f);
 
   //////////////////////////////////////////////////////////////////////////////
   // Draw
-
+  // if(g_width!=1360||g_height!=768){
+    std::cout<<"Width: "<<g_width<<std::endl;
+    std::cout<<"height: "<<g_height<<std::endl;
+  // }
   // Simple static :P
-  for(int i = 0; i < g_width*g_height; ++i)
-    g_frame[i] = glm::vec4(float(rand())/RAND_MAX, float(rand())/RAND_MAX,
-                           float(rand())/RAND_MAX, 1.f);
-
+  for(int i = 0; i < g_width*g_height; ++i){
+    //g_frame[i] = glm::vec4(float(rand())/RAND_MAX, float(rand())/RAND_MAX,
+                           //float(rand())/RAND_MAX, 1.f);
+    g_frame[i]=glm::vec4(new_frame.get()[i].x,new_frame.get()[i].y,new_frame.get()[i].z, new_frame.get()[i].a);
+    //std::cout<<i<<std::endl;
+  }
+  //g_frame=new_frame;
+///////////
+std::cout<<"before draw"<<std::endl;
+  glm::vec4 name=new_frame.get()[g_width*g_height];
+  //std::cout<<new_frame.get()[0]<<std::endl;
+  std::cout<<"-----"<<std::endl;
   glDrawPixels(g_width, g_height, GL_RGBA, GL_FLOAT, g_frame.get());
+  std::cout<<"hanna is right"<<std::endl;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -170,13 +191,19 @@ void errorCallback(int _code, const char* _msg) {
 /// @return Application success status
 int
 main(int _argc, char** _argv) {
-  std::string filename="example.txt";
-  Scene example;
-
-  example.readFromFile(filename);
-  example.printFunc();//print all objects and lights in scene
+  // std::string filename="example.txt";
+  // Scene example;
+  //
+  // example.readFromFile(filename);
+  // example.printFunc();//print all objects and lights in scene
   //////////////////////////////////////////////////////////////////////////////
   // Initialize
+  // g_width=1360;
+  // g_height=768;
+  g_rTracer.resize(g_width,g_height);
+  std::string filename="example.txt";
+  g_scene.readFromFile(filename);
+
   {
     glm::vec3 origin(50,50,0);
     glm::vec3 direction(5,5,5);
@@ -207,10 +234,15 @@ main(int _argc, char** _argv) {
     p1.collide(ex);
     p2.collide(ex);
     p3.collide(ex);
-
-
+    std::cout<<"done"<<std::endl;
   }
+  std::cout<<"Before Raytracer"<<std::endl;
+  std::cout<<"started Raytracer"<<std::endl;
+  //return 0;
 
+  std::cout<<"rendering...."<<std::endl;
+
+  //std::unique_ptr<glm::vec4[]>&  _frame=rTracer.getFrame();
   std::cout << "Initializing GLFWWindow" << std::endl;
   // GLFW
 
@@ -241,8 +273,9 @@ main(int _argc, char** _argv) {
 
   // Program initialize
   std::cout << "Initializing application" << std::endl;
+  //glClearColor(0.f, 0.f, 0.f, 1.f);
   initialize(window);
-    return 0;
+  //  return 0;
   //////////////////////////////////////////////////////////////////////////////
   // Main loop
   run(window);

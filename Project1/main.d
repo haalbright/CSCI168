@@ -1,4 +1,4 @@
-main.o: main.cpp Scene.h Collision.h GLInclude.h \
+main.o: main.cpp Scene.h Ray.h GLInclude.h \
   /usr/local/include/GLFW/glfw3.h /usr/local/include/glm/glm.hpp \
   /usr/local/include/glm/detail/_fixes.hpp \
   /usr/local/include/glm/detail/setup.hpp \
@@ -533,5 +533,5 @@ main.o: main.cpp Scene.h Collision.h GLInclude.h \
   /usr/local/include/glm/./gtx/../vec4.hpp \
   /usr/local/include/glm/./gtx/../mat2x2.hpp \
   /usr/local/include/glm/./gtx/range.hpp \
-  /usr/local/include/glm/./gtx/../gtc/type_ptr.hpp Material.h Ray.h \
-  Light.h Object.h Camera.h Sphere.h Plane.h
+  /usr/local/include/glm/./gtx/../gtc/type_ptr.hpp Light.h Collision.h \
+  Material.h Object.h Camera.h Sphere.h Plane.h Renderer.h RayTracer.h

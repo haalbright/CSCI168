@@ -4,17 +4,37 @@
 #include <vector>
 #include <sstream>
 #include "Collision.h"
-#include "Ray.h"
-#include "Light.h"
+//#include "Ray.h"
+//#include "Light.h"
 #include "Object.h"
 #include <stdlib.h>
-#include "GLInclude.h"
-#include "Camera.h"
-#include "Sphere.h"
+//#include "GLInclude.h"
+//#include "Camera.h"
+//#include "Sphere.h"
 #include "Scene.h"
 #include "Plane.h"
 
-  float sTof(const std::string& str){
+Collision Scene::firstIntersection (const Ray& _ray)const{
+  Collision closest;
+  for (int k=0;k<mObjects.size();k++){//for every object in the scene....
+    Collision collision(mObjects[k]->collide(_ray));//cast the ray
+    if(collision.m_type==Collision::Type::kHit){//if there is a collision, check if it's the only one
+      if(closest.m_type==Collision::Type::kMiss){
+        closest=collision;
+      }
+      else{//multiple collisions, must find closest
+        float dist1=glm::dot(_ray.m_direction,closest.m_x);
+        float dist2=glm::dot(_ray.m_direction, collision.m_x);
+        if(dist2<dist1){
+          closest=collision;
+        }
+      }
+    }
+  }
+  return closest;
+}
+
+float sTof(const std::string& str){
       std::stringstream convert1(str);
       float f;
       convert1>>f;
@@ -72,7 +92,7 @@
   }
 
 
-void Scene::readFromFile(const std::string& filename){
+void Scene::readFromFile (const std::string& filename){
   std::string line;
   std::ifstream inFile;
   inFile.open(filename);

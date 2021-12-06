@@ -14,10 +14,10 @@ Collision Plane::collide(const Ray& _ray) const {
   if(denominator!=0 && numerator/denominator>0){
     float t=numerator/denominator;
     glm::vec3 cPosition=_ray.at(t);
-    std::cout<<"Collision with plane found at: "<<cPosition[0]<<", "<<cPosition[1]<<", "<<cPosition[2]<<std::endl;
+    //std::cout<<"Collision with plane found at: "<<cPosition[0]<<", "<<cPosition[1]<<", "<<cPosition[2]<<std::endl;
     return Collision(cPosition,normal,&m);
   }
-  std::cout<<"No collision found"<<std::endl;
+  //std::cout<<"No collision found"<<std::endl;
   return Collision();
 }
 
