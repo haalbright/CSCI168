@@ -1,12 +1,15 @@
 Members: Hanna Albright, Illya Garashchenko, Katherine Kuenster
 
 Bugs/Missing Features:
-• Ray generation in perspective view. 
+• Ray generation in perspective view
+    •There is a file called rayCaster from Illya, who was in charge of this part, but it doesn't use the starter code or have a way to implement      this with the rest of the code.
+    • I added a version (in the RayTracer.h/.cpp files) to prove that I can create a scene from a given file and do the collisions properly
 • Ambient, diffuse, and specular lighting from multiple point lights. 
-• Shadow determination in the lighting computations. 
 
 Collaborators:
-•None
+•Sphere and plane collision
+  •Computer Graphics Programming in OpenGL with C++ by Scott Gordon and John Clevenger
+
 
   
 Acknowledgement: 
