@@ -1,5 +1,11 @@
 Members: Hanna Albright, Illya Garashchenko, Katherine Kuenster
 
+Features:
+• Read scene from file - Hanna
+• Plane and Sphere Collision - Hanna 
+• Ray generation - Hanna
+• Shadows - Hanna/Katherine
+
 Bugs/Missing Features:
 • Ray generation in perspective view
     •There is a file called rayCaster from Illya, who was in charge of this part, but it doesn't use the starter code or have a way to implement      this with the rest of the code.
@@ -16,7 +22,7 @@ Collaborators:
   
 Acknowledgement: 
  
-I certify that I have listed above all the sources that I consulted regarding this assignment, and that I have 
+I, Hanna Albright, certify that I have listed above all the sources that I consulted regarding this assignment, and that I have 
 not received or given any assistance that is contrary to the letter or the spirit of the collaboration guidelines 
 for this assignment. 
  
